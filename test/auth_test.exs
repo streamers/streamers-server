@@ -1,4 +1,4 @@
-defmodule Streamers.AuthTest do
+defmodule Streamers.Api.AuthTest do
   use ExUnit.Case, async: true
   use Plug.Test
 
@@ -6,7 +6,7 @@ defmodule Streamers.AuthTest do
   alias Streamers.ProtectedTest
   alias Streamers.Models.Registration
 
-  doctest Streamers.Auth
+  doctest Streamers.Api.Auth
 
   require Logger
 
@@ -14,7 +14,7 @@ defmodule Streamers.AuthTest do
     use Plug.Router
 
     plug :match
-    plug Streamers.Auth
+    plug Streamers.Api.Auth
     plug :dispatch
 
     get "/protected" do
