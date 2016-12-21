@@ -1,4 +1,4 @@
-defmodule Requesters.Api.Container do
+defmodule Streamers.Container do
   defmodule Stream do
     defstruct uid: nil, id: nil, name: nil
   end

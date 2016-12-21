@@ -1,10 +1,10 @@
-defmodule Requesters.Api.Stream.Users do
+defmodule Streamers.Stream.Users do
   @moduledoc """
   Api for registrations/updating details
   """
   use Maru.Router
 
-  alias Requesters.Api.Models.Registration
+  alias Streamers.Models.Registration
 
   namespace :api do
     namespace :v1 do

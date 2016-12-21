@@ -1,4 +1,4 @@
-defmodule Requesters.Api.Models.Validator do
+defmodule Streamers.Models.Validator do
   @moduledoc """
   Validator for having required validatation for attributes on create.
 

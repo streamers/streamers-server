@@ -1,4 +1,4 @@
-defmodule Requesters.Api.UserVerification do
+defmodule Streamers.UserVerification do
   import Plug.Conn
   alias Plug.Conn.Status
 
@@ -6,7 +6,7 @@ defmodule Requesters.Api.UserVerification do
 
   require Logger
 
-  alias Requesters.Api.Models.Registration
+  alias Streamers.Models.Registration
 
   """
   Plug should halt connection in case of missing user information in the database by passed api token.
@@ -28,7 +28,7 @@ defmodule Requesters.Api.UserVerification do
   end
 end
 
-defmodule Requesters.Api.Auth do
+defmodule Streamers.Auth do
   use Plug.Builder
 
   """
@@ -40,5 +40,5 @@ defmodule Requesters.Api.Auth do
   """
   Checking by api_key that we have user in database and it's allowed to access API
   """
-  plug Requesters.Api.UserVerification
+  plug Streamers.UserVerification
 end

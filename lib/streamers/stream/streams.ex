@@ -1,4 +1,4 @@
-defmodule Requesters.Api.Stream.Streams do
+defmodule Streamers.Stream.Streams do
   @moduledoc """
   Api for getting streams depends on specific user id
   """
@@ -7,10 +7,10 @@ defmodule Requesters.Api.Stream.Streams do
   """
   Requires to have api_key before to proceed streams or feeds API
   """
-  plug Requesters.Api.Auth
+  plug Streamers.Auth
 
-  alias Requesters.Api.Models.Streams
-  alias Requesters.Api.Models.Subscriber
+  alias Streamers.Models.Streams
+  alias Streamers.Models.Subscriber
 
   namespace :api do
     namespace :v1 do

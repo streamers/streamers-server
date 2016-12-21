@@ -1,4 +1,4 @@
-defmodule Requesters.Api.Models.Attributes do
+defmodule Streamers.Models.Attributes do
   def build(array), do: build(%{}, array)
   def build(collector, nil), do: collector
   def build(collector, []), do: collector

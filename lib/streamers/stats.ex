@@ -1,4 +1,4 @@
-defmodule Requesters.Api.Stats do
+defmodule Streamers.Stats do
   @behaviour Plug
 
   import Plug.Conn, only: [register_before_send: 2]

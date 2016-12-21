@@ -1,11 +1,11 @@
-defmodule Requesters.Api.Models.Feeds do
+defmodule Streamers.Models.Feeds do
   alias RedisPoolex, as: Redis
 
-  require Requesters.Api.Container
+  require Streamers.Container
 
-  alias Requesters.Api.Container.Stream
-  alias Requesters.Api.Container.Feed
-  alias Requesters.Api.Models.Validator
+  alias Streamers.Container.Stream
+  alias Streamers.Container.Feed
+  alias Streamers.Models.Validator
 
 
   def create(uid, stream_id, attributes) do

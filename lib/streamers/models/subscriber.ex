@@ -1,4 +1,4 @@
-defmodule Requesters.Api.Models.Subscriber do
+defmodule Streamers.Models.Subscriber do
   alias RedisPoolex, as: Redis
 
   @moduledoc """

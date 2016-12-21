@@ -1,12 +1,12 @@
-defmodule Requesters.Api.Models.Streams do
+defmodule Streamers.Models.Streams do
   alias RedisPoolex, as: Redis
 
-  require Requesters.Api.Container
+  require Streamers.Container
 
-  alias Requesters.Api.Container.Stream
-  alias Requesters.Api.Container.Feed
-  alias Requesters.Api.Models.Attributes
-  alias Requesters.Api.Models.Validator
+  alias Streamers.Container.Stream
+  alias Streamers.Container.Feed
+  alias Streamers.Models.Attributes
+  alias Streamers.Models.Validator
 
   @moduledoc """
   Module for storing streams(playlists) as part of redis db.

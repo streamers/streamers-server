@@ -1,4 +1,4 @@
-defmodule Requesters.Api do
+defmodule Streamers.Api do
   @moduledoc """
   module for making handshakes between Ruby and Elixir(storing metadata as streams/feeds in Redis).
   """
@@ -16,7 +16,7 @@ defmodule Requesters.Api do
     end
   end
 
-  # plug Requesters.Api.Stats
+  # plug Streamers.Stats
 
   if Mix.env == :dev do
     use Plug.Debugger, otp_app: :requesters
@@ -27,15 +27,15 @@ defmodule Requesters.Api do
   """
   should be on top because of using it without api token.
   """
-  mount Requesters.Api.Stream.Users
+  mount Streamers.Stream.Users
 
   @doc """
   We are using api for dealing with streams/feeds and follow/unfollow actions
   Redis should store connections per user, stream(playlist), feed.
   Remaining metadata we are storing inside PostgreSQL.
   """
-  mount Requesters.Api.Stream.Streams
-  mount Requesters.Api.Stream.Feeds
+  mount Streamers.Stream.Streams
+  mount Streamers.Stream.Feeds
 
   plug Plug.Static, at: "/dashboard", from: "/dashboard"
 end

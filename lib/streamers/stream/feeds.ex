@@ -1,15 +1,15 @@
-defmodule Requesters.Api.Stream.Feeds do
+defmodule Streamers.Stream.Feeds do
   @moduledoc """
   Api for getting streams depends on specific user id
   """
   use Maru.Router
 
-  alias Requesters.Api.Models.Feeds
+  alias Streamers.Models.Feeds
 
   """
   Requires to have api_key before to proceed streams or feeds API
   """
-  plug Requesters.Api.Auth
+  plug Streamers.Auth
 
   namespace :api do
     namespace :v1 do

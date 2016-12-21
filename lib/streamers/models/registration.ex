@@ -1,12 +1,12 @@
-defmodule Requesters.Api.Models.Registration do
+defmodule Streamers.Models.Registration do
   alias RedisPoolex, as: Redis
 
   require UUID
-  require Requesters.Api.Container
+  require Streamers.Container
 
-  alias Requesters.Api.Container.User
-  alias Requesters.Api.Models.Attributes
-  alias Requesters.Api.Models.Validator
+  alias Streamers.Container.User
+  alias Streamers.Models.Attributes
+  alias Streamers.Models.Validator
 
   require Logger
 
