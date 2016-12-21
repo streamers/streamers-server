@@ -4,7 +4,7 @@ defmodule Streamers.Api.Streams do
   """
   use Maru.Router
 
-  """
+  @doc """
   Requires to have api_key before to proceed streams or feeds API
   """
   plug Streamers.Auth

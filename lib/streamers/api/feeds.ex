@@ -6,7 +6,7 @@ defmodule Streamers.Api.Feeds do
 
   alias Streamers.Models.Feeds
 
-  """
+  @doc """
   Requires to have api_key before to proceed streams or feeds API
   """
   plug Streamers.Auth

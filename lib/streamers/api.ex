@@ -24,16 +24,7 @@ defmodule Streamers.Api do
 
   plug Plug.Logger
 
-  """
-  should be on top because of using it without api token.
-  """
   mount Streamers.Api.Users
-
-  @doc """
-  We are using api for dealing with streams/feeds and follow/unfollow actions
-  Redis should store connections per user, stream(playlist), feed.
-  Remaining metadata we are storing inside PostgreSQL.
-  """
   mount Streamers.Api.Streams
   mount Streamers.Api.Feeds
 
