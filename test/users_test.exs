@@ -1,8 +1,8 @@
-defmodule Requesters.Api.UsersTest do
+defmodule Streamers.UsersTest do
   use ExUnit.Case
-  doctest Requesters.Api.Stream.Users
+  doctest Streamers.Api.Users
 
-  use Maru.Test, for: Requesters.Api.Stream.Users
+  use Maru.Test, for: Streamers.Api.Users
 
   require Poison
 

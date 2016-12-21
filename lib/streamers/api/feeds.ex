@@ -1,4 +1,4 @@
-defmodule Streamers.Stream.Feeds do
+defmodule Streamers.Api.Feeds do
   @moduledoc """
   Api for getting streams depends on specific user id
   """

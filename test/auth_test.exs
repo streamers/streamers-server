@@ -1,12 +1,12 @@
-defmodule Requesters.Api.AuthTest do
+defmodule Streamers.AuthTest do
   use ExUnit.Case, async: true
   use Plug.Test
 
   alias RedisPoolex, as: Redis
-  alias Requesters.Api.ProtectedTest
-  alias Requesters.Api.Models.Registration
+  alias Streamers.ProtectedTest
+  alias Streamers.Models.Registration
 
-  doctest Requesters.Api.Auth
+  doctest Streamers.Auth
 
   require Logger
 
@@ -14,7 +14,7 @@ defmodule Requesters.Api.AuthTest do
     use Plug.Router
 
     plug :match
-    plug Requesters.Api.Auth
+    plug Streamers.Auth
     plug :dispatch
 
     get "/protected" do

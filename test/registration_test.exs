@@ -1,8 +1,8 @@
-defmodule Requesters.Api.Stream.RegistrationTest do
+defmodule Streamers.Api.RegistrationTest do
   use ExUnit.Case
 
-  alias Requesters.Api.Models.User
-  alias Requesters.Api.Models.Registration
+  alias Streamers.Models.User
+  alias Streamers.Models.Registration
   alias RedisPoolex, as: Redis
 
   test "create one more user in redis and generate api token for further accessing API" do

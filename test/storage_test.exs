@@ -1,9 +1,9 @@
-defmodule Requesters.Api.Stream.StreamsTest do
+defmodule Streamers.Api.StreamsTest do
   use ExUnit.Case
 
-  alias Requesters.Api.Models.Streams
-  alias Requesters.Api.Models.Feeds
-  alias Requesters.Api.Models.Subscriber
+  alias Streamers.Models.Streams
+  alias Streamers.Models.Feeds
+  alias Streamers.Models.Subscriber
   alias RedisPoolex, as: Redis
 
   test "get all streams from redis storage" do

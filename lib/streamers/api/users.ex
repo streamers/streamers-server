@@ -1,4 +1,4 @@
-defmodule Streamers.Stream.Users do
+defmodule Streamers.Api.Users do
   @moduledoc """
   Api for registrations/updating details
   """

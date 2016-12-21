@@ -23,8 +23,8 @@ defmodule Streamers.Mixfile do
         :edeliver,
         :exrm,
         :runtime_tools,
+        :maru,
       ],
-      mod: {Streamers, []},
     ]
   end
 
@@ -44,6 +44,8 @@ defmodule Streamers.Mixfile do
       {:edeliver, ">= 1.2.9"},
       {:exrm, "~> 1.0.6"},
       {:maru, github: "elixir-maru/maru"},
+      {:plug_require_header, "~> 0.8"},
+      {:uuid, "~> 1.1"},
     ]
   end
 end

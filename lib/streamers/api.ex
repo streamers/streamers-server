@@ -27,15 +27,15 @@ defmodule Streamers.Api do
   """
   should be on top because of using it without api token.
   """
-  mount Streamers.Stream.Users
+  mount Streamers.Api.Users
 
   @doc """
   We are using api for dealing with streams/feeds and follow/unfollow actions
   Redis should store connections per user, stream(playlist), feed.
   Remaining metadata we are storing inside PostgreSQL.
   """
-  mount Streamers.Stream.Streams
-  mount Streamers.Stream.Feeds
+  mount Streamers.Api.Streams
+  mount Streamers.Api.Feeds
 
   plug Plug.Static, at: "/dashboard", from: "/dashboard"
 end

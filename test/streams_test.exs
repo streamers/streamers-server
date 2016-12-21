@@ -1,14 +1,14 @@
-defmodule Requesters.Api.StreamsTest do
+defmodule Streamers.ApisTest do
   use ExUnit.Case
-  doctest Requesters.Api.Stream.Streams
+  doctest Streamers.Api.Streams
 
-  use Maru.Test, for: Requesters.Api.Stream.Streams
+  use Maru.Test, for: Streamers.Api.Streams
 
   require Poison
 
   alias RedisPoolex, as: Redis
-  alias Requesters.Api.Models.Streams
-  alias Requesters.Api.Models.Registration
+  alias Streamers.Models.Streams
+  alias Streamers.Models.Registration
 
   test "response empty in case of no data inside redis" do
     Redis.query(["FLUSHDB"])
