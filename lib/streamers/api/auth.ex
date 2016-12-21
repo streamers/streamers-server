@@ -1,4 +1,4 @@
-defmodule Streamers.UserVerification do
+defmodule Streamers.Api.UserVerification do
   import Plug.Conn
   alias Plug.Conn.Status
 
@@ -28,7 +28,7 @@ defmodule Streamers.UserVerification do
   end
 end
 
-defmodule Streamers.Auth do
+defmodule Streamers.Api.Auth do
   use Plug.Builder
 
   """
@@ -40,5 +40,5 @@ defmodule Streamers.Auth do
   """
   Checking by api_key that we have user in database and it's allowed to access API
   """
-  plug Streamers.UserVerification
+  plug Streamers.Api.UserVerification
 end

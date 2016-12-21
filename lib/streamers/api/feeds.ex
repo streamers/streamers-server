@@ -9,7 +9,7 @@ defmodule Streamers.Api.Feeds do
   @doc """
   Requires to have api_key before to proceed streams or feeds API
   """
-  plug Streamers.Auth
+  plug Streamers.Api.Auth
 
   namespace :api do
     namespace :v1 do
