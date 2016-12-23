@@ -8,13 +8,24 @@ defmodule Streamers.UsersTest do
 
   alias RedisPoolex, as: Redis
 
-  test "response empty in case of no data inside redis" do
+  setup_all do
     Redis.query(["FLUSHDB"])
+    :ok
+  end
 
+  test "register new user by email, password" do
     response = conn(:post, "/api/v1/users",
                     email: "alex.korsak@gmail.com",
                     password: "123456",
                     password_confirmation: "123456") |> make_response
     assert response.status == 200
+  end
+
+  test "response errors in case of no password" do
+    response = conn(:post, "/api/v1/users",
+                    email: "alex.korsak@gmail.com",
+                    password: "1",
+                    password_confirmation: "123456") |> make_response
+    assert response.status == 400
   end
 end

@@ -16,17 +16,11 @@ defmodule Streamers.Api do
     end
   end
 
-  # plug Streamers.Stats
-
-  if Mix.env == :dev do
-    use Plug.Debugger, otp_app: :requesters
-  end
-
   plug Plug.Logger
 
   mount Streamers.Api.Users
   mount Streamers.Api.Streams
   mount Streamers.Api.Feeds
 
-  plug Plug.Static, at: "/dashboard", from: "/dashboard"
+  plug Plug.Static, at: "/", from: "/public"
 end

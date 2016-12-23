@@ -24,7 +24,7 @@ test:
 		--dns 8.8.8.8 \
 		-w /app \
 		$(NAME) \
-		/bin/bash -c "mix test $TEST_CASE"
+		/bin/bash -c "mix test $(TEST_CASE)"
 .PHONY: test
 
 console:

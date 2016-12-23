@@ -15,7 +15,7 @@ defmodule Streamers.Models.Attributes do
   end
 
   def finish(record_attributes, struct_module) do
-    if Dict.size(record_attributes) == 0 do
+    if map_size(record_attributes) == 0 do
       nil
     else
       struct(struct_module, record_attributes)
