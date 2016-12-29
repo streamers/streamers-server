@@ -5,6 +5,7 @@ defmodule Streamers.Api.Feeds do
   use Maru.Router
 
   alias Streamers.Models.Feeds
+  alias Streamers.Models.Streams
 
   @doc """
   Requires to have api_key before to proceed streams or feeds API
@@ -19,10 +20,22 @@ defmodule Streamers.Api.Feeds do
       namespace :streams do
         route_param :stream_id do
 
-          namespace :feeds do
+          resources :feeds do
             get do
               feeds = Feeds.all(current_user().id, params.stream_id)
               json conn, feeds
+            end
+
+            route_param :id do
+              put "/like" do
+                Streams.like(current_user().id, params.stream_id, params.id)
+                put_status(conn, 200)
+              end
+
+              put "/unlike" do
+                Streams.unlike(current_user().id, params.stream_id, params.id)
+                put_status(conn, 200)
+              end
             end
           end # :feeds
         end # route_param :id

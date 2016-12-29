@@ -38,22 +38,4 @@ defmodule Streamers.ApisTest do
     assert response.status == 200
     assert response.resp_body == Poison.encode!([stream])
   end
-
-  test "like object_id for stream and user" do
-    Redis.query(["FLUSHDB"])
-
-    {:ok, user} = Registration.create(%{ email: "alex.korsak@gmail.com" })
-    {:ok, stream} = Streams.create(user.id, %{name: "new-name"})
-
-    # We should have object inside of stream, otherwise it's not persisted.
-    {:ok, feed} = Feeds.create(user.id, stream.id, %{id: "1", timestamp: 1})
-
-    Logger.info inspect(feed)
-
-    response = conn(:post, "/api/v1/streams/#{stream.id}/objects/#{feed.id}/like")
-                |> put_req_header("x-api-key", user.api_key)
-                |> make_response
-    assert response.status == 200
-    assert feed.id == stream.id |> Streams.likes |> Enum.first
-  end
 end

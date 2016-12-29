@@ -17,7 +17,7 @@ defmodule Streamers.Api.Streams do
     namespace :v1 do
 
       desc "Streams are collection for feeds ids based on unique id."
-      namespace :streams do
+      resources :streams do
         get do
           streams = Streams.all(current_user().id)
           json conn, streams
@@ -37,7 +37,7 @@ defmodule Streamers.Api.Streams do
         end
         put "/follow" do
           Subscriber.follow(current_user().id, params.stream_id1, params.stream_id2)
-          json conn, %{status: "OK"}
+          put_status(conn, 200)
         end
 
         params do
@@ -46,7 +46,7 @@ defmodule Streamers.Api.Streams do
         end
         put "/unfollow" do
           Subscriber.unfollow(current_user().id, params.stream_id1, params.stream_id2)
-          json conn, %{status: "OK"}
+          put_status(conn, 200)
         end
 
         route_param :id do
@@ -58,18 +58,6 @@ defmodule Streamers.Api.Streams do
           delete do
             Streams.destroy(current_user().id, params.id)
             put_status(conn, 200)
-          end
-
-          namespace :objects do
-            route_param :object_id do
-              post "/like" do
-                Stream.like(current_user().id, params.id, params.object_id)
-              end
-
-              post "/unlike" do
-                Stream.unlike(current_user().id, params.id, params.object_id)
-              end
-            end
           end
         end # objects
       end

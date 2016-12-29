@@ -65,9 +65,35 @@ defmodule Streamers.Models.Streams do
   defp _create({:error, _errors} = response), do: response
 
 
-  def likes(uid) do
-    key = "#{_unique_key(uid)}:likes"
-    Redis.query(["smembers", key])
+  @doc """
+  `ls` - `likes` for streams
+  """
+  def likes(uid, stream_id) do
+    Redis.query(["smembers", "#{_unique_key(uid)}:lsfs"])
+  end
+
+
+  @doc """
+  `lsfs` - likes feeds
+  """
+  def like(uid, stream_id, id) do
+    Redis.query_pipe([
+      ["sadd", "#{_unique_record_key(uid, id)}:lsfs", id],
+      ["srem", "#{_unique_record_key(uid, id)}:ulsfs", id],
+    ])
+    :ok
+  end
+
+
+  @doc """
+  `ulsfs` - likes feeds
+  """
+  def unlike(uid, stream_id, id) do
+    Redis.query_pipe([
+      ["sadd", "#{_unique_record_key(uid, id)}:ulsfs", id],
+      ["srem", "#{_unique_record_key(uid, id)}:lsfs", id],
+    ])
+    :ok
   end
 
 

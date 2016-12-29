@@ -14,7 +14,7 @@ defmodule Streamers.Api.Users do
       """
       namespace :users do
         params do
-        requires :email, type: String
+          requires :email, type: String
           requires :password, type: String
           requires :password_confirmation, type: String
         end
