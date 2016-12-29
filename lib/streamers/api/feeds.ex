@@ -10,6 +10,7 @@ defmodule Streamers.Api.Feeds do
   Requires to have api_key before to proceed streams or feeds API
   """
   plug Streamers.Api.Auth
+  helpers Streamers.Api.AuthHelpers
 
   namespace :api do
     namespace :v1 do
@@ -20,7 +21,7 @@ defmodule Streamers.Api.Feeds do
 
           namespace :feeds do
             get do
-              feeds = conn.assigns[:user].id |> Feeds.all(params.stream_id)
+              feeds = Feeds.all(current_user().id, params.stream_id)
               json conn, feeds
             end
           end # :feeds

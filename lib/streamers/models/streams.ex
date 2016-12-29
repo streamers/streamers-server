@@ -65,6 +65,12 @@ defmodule Streamers.Models.Streams do
   defp _create({:error, errors} = response), do: response
 
 
+  def likes(uid) do
+    key = "#{_unique_key(uid)}:likes"
+    Redis.query(["smembers", key])
+  end
+
+
   defp _validate(attributes) do
     errors = []
 
@@ -87,7 +93,7 @@ defmodule Streamers.Models.Streams do
   end
 
   defp _unique_record_key(uid, id) do
-    key = uid |> _unique_key
+    key = _unique_key(uid)
     "#{key}:#{id}"
   end
 
@@ -97,7 +103,7 @@ defmodule Streamers.Models.Streams do
   `rs` - streams
   """
   defp _unique_records_key(uid) do
-    key = uid |> _unique_key
+    key = _unique_key(uid)
     "#{key}:rs"
   end
 end

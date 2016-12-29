@@ -4,10 +4,10 @@ defmodule Streamers.Mixfile do
   def project do
     [app: :streamers,
      version: "0.0.1",
-     elixir: "~> 1.3",
+     elixir: "~> 1.4.0-rc.1",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps]
+     deps: deps()]
   end
 
   # Configuration for the OTP application
@@ -39,6 +39,7 @@ defmodule Streamers.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
+      {:exredis, github: "oivoodoo/exredis", override: true},
       {:redis_poolex, github: "oivoodoo/redis_poolex"},
       {:poison, "~> 1.5"},
       {:edeliver, ">= 1.2.9"},

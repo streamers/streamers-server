@@ -8,6 +8,7 @@ defmodule Streamers.Api.Streams do
   Requires to have api_key before to proceed streams or feeds API
   """
   plug Streamers.Api.Auth
+  helpers Streamers.Api.AuthHelpers
 
   alias Streamers.Models.Streams
   alias Streamers.Models.Subscriber
@@ -18,7 +19,7 @@ defmodule Streamers.Api.Streams do
       desc "Streams are collection for feeds ids based on unique id."
       namespace :streams do
         get do
-          streams = conn.assigns[:user].id |> Streams.all
+          streams = Streams.all(current_user().id)
           json conn, streams
         end
 
@@ -26,7 +27,7 @@ defmodule Streamers.Api.Streams do
           requires :name, type: String
         end
         post do
-          stream = conn.assigns[:user].id |> Streams.create(%{name: params.name})
+          stream = Streams.create(current_user().id, %{name: params.name})
           json conn, stream
         end
 
@@ -35,7 +36,7 @@ defmodule Streamers.Api.Streams do
           requires :stream_id2, type: String
         end
         put "/follow" do
-          conn.assigns[:user] |> Subscriber.follow(params.stream_id1, params.stream_id2)
+          Subscriber.follow(current_user().id, params.stream_id1, params.stream_id2)
           json conn, %{status: "OK"}
         end
 
@@ -44,23 +45,33 @@ defmodule Streamers.Api.Streams do
           requires :stream_id2, type: String
         end
         put "/unfollow" do
-          conn.assigns[:user] |> Subscriber.unfollow(params.stream_id1, params.stream_id2)
+          Subscriber.unfollow(current_user().id, params.stream_id1, params.stream_id2)
           json conn, %{status: "OK"}
         end
 
-        # TODO: add UPDATE method for Stream
         route_param :id do
           get do
-            stream = conn.assigns[:user].id |> Streams.find(params.id)
+            stream = Streams.find(current_user().id, params.id)
             json conn, stream
           end
 
           delete do
-            conn.assigns[:user].id |> Streams.destroy(params.id)
-            conn
-            |> put_status(200)
+            Streams.destroy(current_user().id, params.id)
+            put_status(conn, 200)
           end
-        end
+
+          namespace :objects do
+            route_param :object_id do
+              post "/like" do
+                Stream.like(current_user().id, params.id, params.object_id)
+              end
+
+              post "/unlike" do
+                Stream.unlike(current_user().id, params.id, params.object_id)
+              end
+            end
+          end
+        end # objects
       end
 
     end # v1
