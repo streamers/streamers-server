@@ -37,7 +37,9 @@ defmodule Streamers.Api.Streams do
         end
         put "/follow" do
           Subscriber.follow(current_user().id, params.stream_id1, params.stream_id2)
-          put_status(conn, 200)
+          conn
+          |> put_status(200)
+          |> json %{"status": "ok"}
         end
 
         params do
@@ -46,7 +48,9 @@ defmodule Streamers.Api.Streams do
         end
         put "/unfollow" do
           Subscriber.unfollow(current_user().id, params.stream_id1, params.stream_id2)
-          put_status(conn, 200)
+          conn
+          |> put_status(200)
+          |> json %{"status": "ok"}
         end
 
         route_param :id do
@@ -57,7 +61,9 @@ defmodule Streamers.Api.Streams do
 
           delete do
             Streams.destroy(current_user().id, params.id)
-            put_status(conn, 200)
+            conn
+            |> put_status(200)
+            |> json %{"status": "ok"}
           end
         end # objects
       end

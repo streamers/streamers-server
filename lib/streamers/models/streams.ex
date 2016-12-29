@@ -69,7 +69,15 @@ defmodule Streamers.Models.Streams do
   `ls` - `likes` for streams
   """
   def likes(uid, stream_id) do
-    Redis.query(["smembers", "#{_unique_key(uid)}:lsfs"])
+    Redis.query(["smembers", "#{_unique_record_key(uid, stream_id)}:lsfs"])
+  end
+
+
+  @doc """
+  `ls` - `likes` for streams
+  """
+  def unlikes(uid, stream_id) do
+    Redis.query(["smembers", "#{_unique_record_key(uid, stream_id)}:ulsfs"])
   end
 
 
@@ -78,8 +86,8 @@ defmodule Streamers.Models.Streams do
   """
   def like(uid, stream_id, id) do
     Redis.query_pipe([
-      ["sadd", "#{_unique_record_key(uid, id)}:lsfs", id],
-      ["srem", "#{_unique_record_key(uid, id)}:ulsfs", id],
+      ["sadd", "#{_unique_record_key(uid, stream_id)}:lsfs", id],
+      ["srem", "#{_unique_record_key(uid, stream_id)}:ulsfs", id],
     ])
     :ok
   end
@@ -90,8 +98,8 @@ defmodule Streamers.Models.Streams do
   """
   def unlike(uid, stream_id, id) do
     Redis.query_pipe([
-      ["sadd", "#{_unique_record_key(uid, id)}:ulsfs", id],
-      ["srem", "#{_unique_record_key(uid, id)}:lsfs", id],
+      ["sadd", "#{_unique_record_key(uid, stream_id)}:ulsfs", id],
+      ["srem", "#{_unique_record_key(uid, stream_id)}:lsfs", id],
     ])
     :ok
   end

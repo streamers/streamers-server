@@ -29,12 +29,16 @@ defmodule Streamers.Api.Feeds do
             route_param :id do
               put "/like" do
                 Streams.like(current_user().id, params.stream_id, params.id)
-                put_status(conn, 200)
+                conn
+                |> put_status(200)
+                |> json %{"status": "ok"}
               end
 
               put "/unlike" do
                 Streams.unlike(current_user().id, params.stream_id, params.id)
-                put_status(conn, 200)
+                conn
+                |> put_status(200)
+                |> json %{"status": "ok"}
               end
             end
           end # :feeds

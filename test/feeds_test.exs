@@ -58,13 +58,13 @@ defmodule Streamers.FeedsTest do
                 |> put_req_header("x-api-key", user.api_key)
                 |> make_response
     assert response.status == 200
-    assert 1 == Streams.likes |> Enum.count
-    assert feed.id == stream.id |> Streams.likes |> Enum.first
+    assert 1 == Streams.likes(user.id, stream.id) |> Enum.count
+    assert feed.id == Streams.likes(user.id, stream.id) |> List.first
 
     response = conn(:put, "/api/v1/streams/#{stream.id}/feeds/#{feed.id}/unlike")
                 |> put_req_header("x-api-key", user.api_key)
                 |> make_response
     assert response.status == 200
-    assert 0 == Streams.likes |> Enum.count
+    assert 0 == Streams.likes(user.id, stream.id) |> Enum.count
   end
 end
