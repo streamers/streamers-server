@@ -44,7 +44,7 @@ defmodule Streamers.FeedsTest do
     assert response.resp_body == Poison.encode!([feed])
   end
 
-  test "like object_id for stream and user" do
+  test "like feed id for stream and user" do
     Redis.query(["FLUSHDB"])
 
     {:ok, user} = Registration.create(%{ email: "alex.korsak@gmail.com" })
