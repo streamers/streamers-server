@@ -16,6 +16,6 @@
   "poolboy": {:hex, :poolboy, "1.5.1", "6b46163901cfd0a1b43d692657ed9d7e599853b3b21b95ae5ae0a777cf9b6ca8", [:rebar], []},
   "providers": {:hex, :providers, "1.6.0", "db0e2f9043ae60c0155205fcd238d68516331d0e5146155e33d1e79dc452964a", [:rebar3], [{:getopt, "0.8.2", [hex: :getopt, optional: false]}]},
   "ranch": {:hex, :ranch, "1.2.1", "a6fb992c10f2187b46ffd17ce398ddf8a54f691b81768f9ef5f461ea7e28c762", [:make], []},
-  "redis_poolex": {:git, "https://github.com/oivoodoo/redis_poolex.git", "7518a25fbfb1aa1b14d1c3eeb2f60ab9c6817943", []},
+  "redis_poolex": {:git, "https://github.com/oivoodoo/redis_poolex.git", "c6d680605d88d1ff8e58baca5252f7b5af4104d8", []},
   "relx": {:hex, :relx, "3.22.1", "b79c220a0234c4360ee7b7c2faaa0a07085dc6266712c12c03a073164d795081", [:rebar3], []},
   "uuid": {:hex, :uuid, "1.1.5", "96cb36d86ee82f912efea4d50464a5df606bf3f1163d6bdbb302d98474969369", [:mix], []}}
