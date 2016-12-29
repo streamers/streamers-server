@@ -18,7 +18,7 @@ defmodule Streamers.Models.Validator do
   def uniqueness(errors, field, value, check_fn), do: _uniqueness(errors, field, value, check_fn)
   defp _uniqueness(errors, field, nil, _check_fn), do: errors ++ ["#{field} is missing"]
   defp _uniqueness(errors, field, "", _check_fn), do: errors ++ ["#{field} is missing"]
-  defp _uniqueness(errors, field, :undefined, check_fn), do: errors ++ ["#{field} is missing"]
+  defp _uniqueness(errors, field, :undefined, _check_fn), do: errors ++ ["#{field} is missing"]
   defp _uniqueness(errors, field, value, check_fn) do
     unless check_fn.(value) do
       errors

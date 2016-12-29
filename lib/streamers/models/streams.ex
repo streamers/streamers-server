@@ -62,7 +62,7 @@ defmodule Streamers.Models.Streams do
 
     {:ok, stream}
   end
-  defp _create({:error, errors} = response), do: response
+  defp _create({:error, _errors} = response), do: response
 
 
   def likes(uid) do

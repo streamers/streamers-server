@@ -15,16 +15,7 @@ defmodule Streamers.Mixfile do
   # Type "mix help compile.app" for more information
   def application do
     [
-      applications: [
-        :logger,
-        :redis_poolex,
-        :exredis,
-        :xmerl,
-        :edeliver,
-        :exrm,
-        :runtime_tools,
-        :maru,
-      ],
+      extra_applications: [:logger]
     ]
   end
 
