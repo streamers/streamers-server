@@ -22,7 +22,7 @@ defmodule Streamers.Models.Registration do
   end
 
   defp _create({attributes, :ok}) do
-    id = _unique_id
+    id = _unique_id()
     record_key = _unique_record_key(id)
 
     Redis.query_pipe([

@@ -8,6 +8,7 @@ defmodule Streamers.Api.Streams do
   Requires to have api_key before to proceed streams or feeds API
   """
   plug Streamers.Api.Auth
+  helpers Streamers.Api.AuthHelpers
 
   alias Streamers.Models.Streams
   alias Streamers.Models.Subscriber
@@ -16,9 +17,9 @@ defmodule Streamers.Api.Streams do
     namespace :v1 do
 
       desc "Streams are collection for feeds ids based on unique id."
-      namespace :streams do
+      resources :streams do
         get do
-          streams = conn.assigns[:user].id |> Streams.all
+          streams = Streams.all(current_user().id)
           json conn, streams
         end
 
@@ -26,7 +27,7 @@ defmodule Streamers.Api.Streams do
           requires :name, type: String
         end
         post do
-          stream = conn.assigns[:user].id |> Streams.create(%{name: params.name})
+          stream = Streams.create(current_user().id, %{name: params.name})
           json conn, stream
         end
 
@@ -35,8 +36,10 @@ defmodule Streamers.Api.Streams do
           requires :stream_id2, type: String
         end
         put "/follow" do
-          conn.assigns[:user] |> Subscriber.follow(params.stream_id1, params.stream_id2)
-          json conn, %{status: "OK"}
+          Subscriber.follow(current_user().id, params.stream_id1, params.stream_id2)
+          conn
+          |> put_status(200)
+          |> json %{"status": "ok"}
         end
 
         params do
@@ -44,23 +47,25 @@ defmodule Streamers.Api.Streams do
           requires :stream_id2, type: String
         end
         put "/unfollow" do
-          conn.assigns[:user] |> Subscriber.unfollow(params.stream_id1, params.stream_id2)
-          json conn, %{status: "OK"}
+          Subscriber.unfollow(current_user().id, params.stream_id1, params.stream_id2)
+          conn
+          |> put_status(200)
+          |> json %{"status": "ok"}
         end
 
-        # TODO: add UPDATE method for Stream
         route_param :id do
           get do
-            stream = conn.assigns[:user].id |> Streams.find(params.id)
+            stream = Streams.find(current_user().id, params.id)
             json conn, stream
           end
 
           delete do
-            conn.assigns[:user].id |> Streams.destroy(params.id)
+            Streams.destroy(current_user().id, params.id)
             conn
             |> put_status(200)
+            |> json %{"status": "ok"}
           end
-        end
+        end # objects
       end
 
     end # v1

@@ -7,6 +7,13 @@ defmodule Streamers.Models.Feeds do
   alias Streamers.Container.Feed
   alias Streamers.Models.Validator
 
+  @moduledoc """
+  `Feed`:
+  `stream_id` container id
+  `uid` user id
+  `id` generated id
+  `timestamp` time of latest generated feed, score for feed to sort in collection.
+  """
 
   def create(uid, stream_id, attributes) do
     attributes |> Dict.merge(stream_id: stream_id, uid: uid) |> _validate |> _create
@@ -20,6 +27,7 @@ defmodule Streamers.Models.Feeds do
     ])
   end
 
+
   defp _validate(attributes) do
     errors = []
 
@@ -30,6 +38,7 @@ defmodule Streamers.Models.Feeds do
     |> Validator.requires(:timestamp, attributes[:timestamp])
     |> Validator.finish(attributes)
   end
+
 
   defp _create({attributes, :ok}) do
     followers = Redis.query(["smembers", "st:#{attributes.uid}:#{attributes.stream_id}:fs"])

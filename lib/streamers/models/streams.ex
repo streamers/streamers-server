@@ -62,7 +62,47 @@ defmodule Streamers.Models.Streams do
 
     {:ok, stream}
   end
-  defp _create({:error, errors} = response), do: response
+  defp _create({:error, _errors} = response), do: response
+
+
+  @doc """
+  `ls` - `likes` for streams
+  """
+  def likes(uid, stream_id) do
+    Redis.query(["smembers", "#{_unique_record_key(uid, stream_id)}:lsfs"])
+  end
+
+
+  @doc """
+  `ls` - `likes` for streams
+  """
+  def unlikes(uid, stream_id) do
+    Redis.query(["smembers", "#{_unique_record_key(uid, stream_id)}:ulsfs"])
+  end
+
+
+  @doc """
+  `lsfs` - likes feeds
+  """
+  def like(uid, stream_id, id) do
+    Redis.query_pipe([
+      ["sadd", "#{_unique_record_key(uid, stream_id)}:lsfs", id],
+      ["srem", "#{_unique_record_key(uid, stream_id)}:ulsfs", id],
+    ])
+    :ok
+  end
+
+
+  @doc """
+  `ulsfs` - likes feeds
+  """
+  def unlike(uid, stream_id, id) do
+    Redis.query_pipe([
+      ["sadd", "#{_unique_record_key(uid, stream_id)}:ulsfs", id],
+      ["srem", "#{_unique_record_key(uid, stream_id)}:lsfs", id],
+    ])
+    :ok
+  end
 
 
   defp _validate(attributes) do
@@ -87,7 +127,7 @@ defmodule Streamers.Models.Streams do
   end
 
   defp _unique_record_key(uid, id) do
-    key = uid |> _unique_key
+    key = _unique_key(uid)
     "#{key}:#{id}"
   end
 
@@ -97,7 +137,7 @@ defmodule Streamers.Models.Streams do
   `rs` - streams
   """
   defp _unique_records_key(uid) do
-    key = uid |> _unique_key
+    key = _unique_key(uid)
     "#{key}:rs"
   end
 end

@@ -8,7 +8,10 @@ defmodule Streamers.ApisTest do
 
   alias RedisPoolex, as: Redis
   alias Streamers.Models.Streams
+  alias Streamers.Models.Feeds
   alias Streamers.Models.Registration
+
+  require Logger
 
   test "response empty in case of no data inside redis" do
     Redis.query(["FLUSHDB"])

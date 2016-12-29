@@ -6,12 +6,6 @@ defmodule Streamers.Api.Users do
 
   alias Streamers.Models.Registration
 
-  defmodule Registration.View do
-    def for(user) do
-      %{id: user.id, email: user.email, api_key: user.api_key}
-    end
-  end
-
   namespace :api do
     namespace :v1 do
       @doc """
@@ -20,14 +14,14 @@ defmodule Streamers.Api.Users do
       """
       namespace :users do
         params do
-        requires :email, type: String
+          requires :email, type: String
           requires :password, type: String
           requires :password_confirmation, type: String
         end
         post do
           case Registration.create(%{email: params.email}) do
             {:ok, user} ->
-              json conn, Registration.View.for(user)
+              json conn, %{id: user.id, email: user.email, api_key: user.api_key}
             {:error, errors} ->
               conn
               |> put_status(400)
