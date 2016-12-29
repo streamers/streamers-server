@@ -38,6 +38,10 @@ defmodule Streamers.Mixfile do
       {:maru, github: "elixir-maru/maru"},
       {:plug_require_header, "~> 0.8"},
       {:uuid, "~> 1.1"},
+      {:getopt, "~> 0.8.2"},
+      {:erlware_commons, "~> 0.22.0"},
+      {:bbmustache, "~> 1.4"},
+      {:providers, "~> 1.6"},
     ]
   end
 end

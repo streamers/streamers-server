@@ -13,7 +13,7 @@ defmodule Streamers.Models.Validator do
   def requires(errors, field, nil), do: errors ++ ["#{field} is required"]
   def requires(errors, field, ""), do: errors ++ ["#{field} is required"]
   def requires(errors, field, :undefined), do: errors ++ ["#{field} is required"]
-  def requires(errors, field, _value), do: errors
+  def requires(errors, _field, _value), do: errors
 
   def uniqueness(errors, field, value, check_fn), do: _uniqueness(errors, field, value, check_fn)
   defp _uniqueness(errors, field, nil, _check_fn), do: errors ++ ["#{field} is missing"]

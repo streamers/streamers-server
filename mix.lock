@@ -1,4 +1,4 @@
-%{"bbmustache": {:hex, :bbmustache, "1.0.4", "7ba94f971c5afd7b6617918a4bb74705e36cab36eb84b19b6a1b7ee06427aa38", [:rebar], []},
+%{"bbmustache": {:hex, :bbmustache, "1.4.0", "cc45a071dd2b3df3a3e5f28548c8167e669a1f53437a2a2fd3b378cd38a6e725", [:rebar3], []},
   "cf": {:hex, :cf, "0.2.2", "7f2913fff90abcabd0f489896cfeb0b0674f6c8df6c10b17a83175448029896c", [:rebar3], []},
   "cowboy": {:hex, :cowboy, "1.0.4", "a324a8df9f2316c833a470d918aaf73ae894278b8aa6226ce7a9bf699388f878", [:make, :rebar], [{:cowlib, "~> 1.0.0", [hex: :cowlib, optional: false]}, {:ranch, "~> 1.0", [hex: :ranch, optional: false]}]},
   "cowlib": {:hex, :cowlib, "1.0.2", "9d769a1d062c9c3ac753096f868ca121e2730b9a377de23dec0f7e08b1df84ee", [:make], []},
@@ -18,4 +18,5 @@
   "ranch": {:hex, :ranch, "1.2.1", "a6fb992c10f2187b46ffd17ce398ddf8a54f691b81768f9ef5f461ea7e28c762", [:make], []},
   "redis_poolex": {:git, "https://github.com/oivoodoo/redis_poolex.git", "c6d680605d88d1ff8e58baca5252f7b5af4104d8", []},
   "relx": {:hex, :relx, "3.22.1", "b79c220a0234c4360ee7b7c2faaa0a07085dc6266712c12c03a073164d795081", [:rebar3], []},
+  "termcap": {:hex, :termcap, "0.1.0", "45977f01b28e8c8d56e270e5233634515eaacef9aa701afa9adb3bf5c2793990", [:rebar3], []},
   "uuid": {:hex, :uuid, "1.1.5", "96cb36d86ee82f912efea4d50464a5df606bf3f1163d6bdbb302d98474969369", [:mix], []}}
