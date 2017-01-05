@@ -42,3 +42,13 @@ defmodule Streamers.Api.Auth do
   """
   plug Streamers.Api.UserVerification
 end
+
+defmodule Streamers.Api.AuthHelpers do
+  use Maru.Helper
+
+  defmacro current_user do
+    quote do
+      var!(conn).assigns[:user]
+    end
+  end
+end
