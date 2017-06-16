@@ -92,6 +92,22 @@ defmodule Streamers.Models.Streams do
     :ok
   end
 
+  def like(uid, stream_id) do
+    Redis.query_pipe([
+      ["sadd", "#{_unique_record_key(uid, stream_id)}:ls", stream_id],
+      ["srem", "#{_unique_record_key(uid, stream_id)}:uls", stream_id],
+    ])
+    :ok
+  end
+
+  def unlike(uid, stream_id) do
+    Redis.query_pipe([
+      ["srem", "#{_unique_record_key(uid, stream_id)}:ls", stream_id],
+      ["sadd", "#{_unique_record_key(uid, stream_id)}:uls", stream_id],
+    ])
+    :ok
+  end
+
 
   @doc """
   `ulsfs` - likes feeds
