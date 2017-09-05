@@ -5,6 +5,6 @@ config :redis_poolex,
   max_queue: :infinity,
   pool_size: 10,
   pool_max_overflow: 1,
-  connection_string: "redis://streamers_redis:6379/"
+  connection_string: "redis://streamers_redis:6381/"
 
 config :logger, level: :debug, backends: [:console]
