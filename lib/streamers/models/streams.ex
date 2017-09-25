@@ -138,13 +138,8 @@ defmodule Streamers.Models.Streams do
     Redis.query(["incr", "st:#{uid}"])
   end
 
-  defp _unique_key(uid) do
-    "st:#{uid}"
-  end
-
   defp _unique_record_key(uid, id) do
-    key = _unique_key(uid)
-    "#{key}:#{id}"
+    "st:#{uid}:#{id}"
   end
 
   @doc """
@@ -153,7 +148,6 @@ defmodule Streamers.Models.Streams do
   `rs` - streams
   """
   defp _unique_records_key(uid) do
-    key = _unique_key(uid)
-    "#{key}:rs"
+    "st:#{uid}:rs"
   end
 end
