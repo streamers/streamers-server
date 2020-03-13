@@ -4,7 +4,7 @@ defmodule Streamers.Mixfile do
   def project do
     [app: :streamers,
      version: "0.0.1",
-     elixir: "~> 1.4.0-rc.1",
+     elixir: "~> 1.10.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps()]
@@ -33,13 +33,11 @@ defmodule Streamers.Mixfile do
       {:exredis, github: "oivoodoo/exredis", override: true},
       {:redis_poolex, github: "oivoodoo/redis_poolex"},
       {:poison, "~> 1.5"},
-      {:edeliver, ">= 1.2.9"},
-      {:exrm, "~> 1.0.6"},
       {:maru, github: "elixir-maru/maru"},
       {:plug_require_header, "~> 0.8"},
       {:uuid, "~> 1.1"},
       {:getopt, "~> 0.8.2"},
-      {:erlware_commons, "~> 0.22.0"},
+      {:erlware_commons, "~> 1.2.0"},
       {:bbmustache, "~> 1.4"},
       {:providers, "~> 1.6"},
     ]

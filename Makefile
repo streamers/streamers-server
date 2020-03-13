@@ -1,8 +1,9 @@
+DOCKER_COMPOSE=pipenv run docker-compose
 NAME=streamers
 TEST_CASE=$1
 
 build: clean
-	docker-compose up -d
+	$(DOCKER_COMPOSE) up -d
 	docker build -t $(NAME) .
 	docker run --rm -t -i \
 		--network=$(NAME)_back-tier \
@@ -10,7 +11,7 @@ build: clean
 		--dns 8.8.8.8 \
 		-w /app \
 		$(NAME) \
-		/bin/bash -c "mix deps.get"
+		/bin/ash -c "mix deps.get"
 .PHONY: build
 
 clean:
@@ -24,7 +25,7 @@ test:
 		--dns 8.8.8.8 \
 		-w /app \
 		$(NAME) \
-		/bin/bash -c "mix test $(TEST_CASE)"
+		/bin/ash -c "mix test $(TEST_CASE)"
 .PHONY: test
 
 console:
@@ -34,5 +35,5 @@ console:
 		--dns 8.8.8.8 \
 		-w /app \
 		$(NAME) \
-		/bin/bash
+		/bin/ash
 .PHONY: console
